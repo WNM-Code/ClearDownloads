@@ -1,0 +1,14 @@
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.exe.config
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.exe
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.pdb
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\MainWindow.g.cs
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\App.g.cs
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads_MarkupCompile.cache
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads_MarkupCompile.lref
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\MainWindow.baml
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.g.resources
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.Properties.Resources.resources
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.csproj.GenerateResource.Cache
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.exe
+d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.pdb
