@@ -16,6 +16,7 @@ namespace CLRDownloads
         string storeLoc = "";
         bool moved;
         static int[] dayEnabled = {0,0,0,0,0,0,0};
+        private bool running;
 
         public Remover()
         {
@@ -23,25 +24,36 @@ namespace CLRDownloads
             store = "$ Removed " + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
             storeLoc = location + "\\" + store;
             moved = false;
+            running = false;
         }
 
-        public void run()
+        public async void run()
         {
+            
             DateTime now = DateTime.Now;
             DateTime before = DateTime.Now;
-            //while (true)
-            //{
-            //    now = DateTime.Now;
-            //    if (now.Date > before.Date && now.Hour > 4)
-            //    {
-                    Directory.CreateDirectory(storeLoc);
-                    remove(location, now);
-                    before = now;
-                    setStore();
-                    setLoc();
-                //}
-                //Thread.Sleep(300000);
-            //}
+            await Task.Run(() =>
+            {
+                while (true)
+                {
+                    now = DateTime.Now;
+                    if (running)
+                    {
+                        Directory.CreateDirectory(storeLoc);
+                        remove(location, now);
+                        before = now;
+                        setStore();
+                        setLoc();
+                        Console.WriteLine("100");
+                    }
+                    else
+                    {
+                        Console.WriteLine("200");
+                    }
+                    Thread.Sleep(1000);
+                }
+            });
+            
         }
 
         public void remove(string path, DateTime now)
@@ -89,6 +101,16 @@ namespace CLRDownloads
         public static void setDayEnabled(int day, int val)
         {
             dayEnabled[day] = val;
+        }
+
+        public void setRunning(bool r)
+        {
+            this.running = r;
+        }
+
+        public bool getRunning()
+        {
+            return this.running;
         }
     }
 }

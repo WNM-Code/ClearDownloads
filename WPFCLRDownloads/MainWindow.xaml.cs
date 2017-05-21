@@ -31,10 +31,11 @@ namespace WPFCLRDownloads
             {"Saturday" , 5 },
             {"Sunday"   , 6 }
         };
+        Remover r;
         public MainWindow()
         {
             InitializeComponent();
-            Remover r = new Remover();
+            r = new Remover();
             r.run();
 
         }
@@ -47,6 +48,21 @@ namespace WPFCLRDownloads
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             Handle(sender as CheckBox);
+        }
+
+        private void RunClick(object sender, RoutedEventArgs e)
+        {
+            if (r.getRunning())
+            {
+                r.setRunning(false);
+                ((Button)sender).Content = "Run";
+            }
+            else
+            {
+                r.setRunning(true);
+                ((Button)sender).Content = "Stop";
+            }
+            
         }
 
         private void Handle(CheckBox checkbox)

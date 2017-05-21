@@ -12,3 +12,17 @@ d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Deb
 d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.csproj.GenerateResource.Cache
 d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.exe
 d:\documents\visual studio 2017\Projects\WPFCLRDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.pdb
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.exe.config
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.exe
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.pdb
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\MainWindow.g.cs
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\App.g.cs
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads_MarkupCompile.cache
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads_MarkupCompile.lref
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\MainWindow.baml
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.g.resources
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.Properties.Resources.resources
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.csproj.GenerateResource.Cache
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.exe
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.pdb
