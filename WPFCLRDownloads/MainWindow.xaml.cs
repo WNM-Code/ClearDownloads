@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using CLRDownloads;
+using System.Text.RegularExpressions;
 
 namespace WPFCLRDownloads
 {
@@ -21,22 +12,13 @@ namespace WPFCLRDownloads
     /// </summary>
     public partial class MainWindow : Window
     {
-        Dictionary<string, int> days = new Dictionary<string, int>
-        {
-            {"Monday"   , 0 },
-            {"Tuesday"  , 1 },
-            {"Wednesday", 2 },
-            {"Thursday" , 3 },
-            {"Friday"   , 4 },
-            {"Saturday" , 5 },
-            {"Sunday"   , 6 }
-        };
+
         Remover r;
         public MainWindow()
         {
             InitializeComponent();
             r = new Remover();
-            r.run();
+            r.run(LogsPane, RunButton);
 
         }
 
@@ -59,24 +41,137 @@ namespace WPFCLRDownloads
             }
             else
             {
-                r.setRunning(true);
+                bool repeats = false;
+                foreach (var v in r.getDayEnabled())
+                {
+                    if (v.Value == 1)
+                    {
+                        repeats = true;
+                        break;
+                    }
+                }
+                if (repeats)
+                {
+                    r.setRunning(true);
+                }
+                else
+                {
+                    r.runNow(LogsPane, RunButton);
+                }
                 ((Button)sender).Content = "Stop";
             }
             
         }
 
+        private void TextFocus(object sender, RoutedEventArgs e)
+        {
+            //((TextBox)sender).Text = "";
+        }
+
+        private void TextNoFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).Text = MakeFive(((TextBox)sender).Text);
+            r.setRepeatTime(((TextBox)sender).Text);
+        }
+
+        private void grid1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            grid1.Focus();
+        }
+
+        private void TextChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                RunButton.Content = "Run";
+                r.setRunning(false);
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+           
+            string text = ((TextBox)sender).Text;
+            int len = text.Length;
+            if (len > 0)
+            {
+                text = CleanColon(text);
+                text = CleanLetter(text);
+                len = text.Length;
+                
+                if(len >= 2)
+                {
+                    if(len != 2)
+                    {
+                        text = text.Insert(2, ":");
+                        len = text.Length;
+                    }
+                    
+                    if (len > 5)
+                    {
+                        text = text.Substring(0, 5);
+                        len = 5;
+                    }
+                }
+
+                Console.WriteLine(text);
+                
+                ((TextBox)sender).Text = text;
+
+                len = text.Length;
+                ((TextBox)sender).SelectionStart = len;
+                ((TextBox)sender).SelectionLength = 0;
+            }
+        }
+
+        private string CleanColon(string s)
+        {
+            while (s.Contains(":"))
+            {
+                s = s.Replace(":", "");
+            }
+            return s;
+        }
+
+        private string CleanLetter(string s)
+        {
+            return Regex.Replace(s, "[A-Za-z ~!@#$%^&*()_+=-`{}<>,.:\";\']", "");
+        }
+
+        private string MakeFive(string s)
+        {
+            while (s.Length < 5)
+            {
+                s = s + "0";
+            }
+            return s;
+        }
+
         private void Handle(CheckBox checkbox)
         {
-            int day = days[checkbox.Name];
             if ((bool)checkbox.IsChecked)
             {
-                CLRDownloads.Remover.setDayEnabled(day, 1);
+                CLRDownloads.Remover.setDayEnabled(checkbox.Name, 1);
             }
             else
             {
-                CLRDownloads.Remover.setDayEnabled(day, 0);
+                CLRDownloads.Remover.setDayEnabled(checkbox.Name, 0);
             }
             
+        }
+
+        private void CorR_Click(object sender, RoutedEventArgs e)
+        {
+            if (r.getCorR())
+            {
+                r.setCorR(false);
+                ((Button)sender).Content = "Recycling";
+            }
+            else
+            {
+                r.setCorR(true);
+                ((Button)sender).Content = "Archiving";
+            }
         }
     }
 }

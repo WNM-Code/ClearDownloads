@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
-using Microsoft.VisualBasic;
+using System.Windows.Controls;
 
 namespace CLRDownloads
 {
@@ -15,7 +13,36 @@ namespace CLRDownloads
         string store = "";
         string storeLoc = "";
         bool moved;
-        static int[] dayEnabled = {0,0,0,0,0,0,0};
+        bool CorR;
+        private static Dictionary<string, int> dayEnabled = new Dictionary<string, int>
+        {
+            {"Monday"   , 0 },
+            {"Tuesday"  , 0 },
+            {"Wednesday", 0 },
+            {"Thursday" , 0 },
+            {"Friday"   , 0 },
+            {"Saturday" , 0 },
+            {"Sunday"   , 0 }
+        };
+
+        public static Dictionary<int, string> months = new Dictionary<int, string>
+        {
+            {1, "January" },
+            {2, "Febuary" },
+            {3, "March" },
+            {4, "April" },
+            {5, "May" },
+            {6, "June" },
+            {7, "July" },
+            {8, "August" },
+            {9, "September" },
+            {10, "October" },
+            {11, "November" },
+            {12, "December" },
+
+        };
+        private DateTime repeatTime;
+
         private bool running;
 
         public Remover()
@@ -25,9 +52,11 @@ namespace CLRDownloads
             storeLoc = location + "\\" + store;
             moved = false;
             running = false;
+            CorR = false;
+            repeatTime = new DateTime(1997,4,1,0,0,0);
         }
 
-        public async void run()
+        public async void run(ListBox l, Button r)
         {
             
             DateTime now = DateTime.Now;
@@ -39,24 +68,45 @@ namespace CLRDownloads
                     now = DateTime.Now;
                     if (running)
                     {
-                        Directory.CreateDirectory(storeLoc);
-                        remove(location, now);
-                        before = now;
-                        setStore();
-                        setLoc();
-                        Console.WriteLine("100");
+                        if (dayEnabled[now.DayOfWeek.ToString()] == 1 &&
+                            now.Hour == repeatTime.Hour &&
+                            now.Minute == repeatTime.Minute)
+                        {
+                            callRemove(now, l);
+                            before = now;
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("200");
-                    }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(60000);
                 }
             });
             
         }
 
-        public void remove(string path, DateTime now)
+        public async void runNow(ListBox l, Button r)
+        {
+
+            DateTime now = DateTime.Now;
+            await Task.Run(() =>
+            {
+
+                callRemove(now, l);
+
+                r.Dispatcher.Invoke(() => { r.Content = "Run"; });
+                setRunning(false);
+                        
+            });
+
+        }
+
+        public void callRemove(DateTime now, ListBox l)
+        {
+            setStore();
+            setLoc();
+            Directory.CreateDirectory(storeLoc);
+            remove(location, now, l);
+        }
+
+        public void remove(string path, DateTime now, ListBox l)
         {
             string[] folders = Directory.GetDirectories(path);
             string filename;
@@ -81,10 +131,12 @@ namespace CLRDownloads
             if (!moved)
             {
                 Directory.Delete(storeLoc);
+                l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(false, now)); });
             }
             else
             {
                 Console.WriteLine("Removed @: " + now);
+                l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(true, now)); });
             }
         }
 
@@ -98,9 +150,15 @@ namespace CLRDownloads
             storeLoc = location + "\\" + store;
         }
 
-        public static void setDayEnabled(int day, int val)
+        public static void setDayEnabled(string day, int val)
         {
             dayEnabled[day] = val;
+            Console.WriteLine(dayEnabled[day]);
+        }
+
+        public Dictionary<string, int> getDayEnabled()
+        {
+            return dayEnabled;
         }
 
         public void setRunning(bool r)
@@ -111,6 +169,38 @@ namespace CLRDownloads
         public bool getRunning()
         {
             return this.running;
+        }
+
+        public void setRepeatTime(string s)
+        {
+            int hour = Int32.Parse(s.Substring(0, 2));
+            int min = Int32.Parse(s.Substring(3, 2));
+            Console.WriteLine("Hour: " + hour);
+            Console.WriteLine("Min: " + min);
+            repeatTime = new DateTime(1997, 4, 1, hour, min, 0);
+        }
+
+        private string getRemovedString(bool removed, DateTime now)
+        {
+            if (removed)
+            {
+                return "Removed: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+            }
+            else
+            {
+                return "Nothing to be removed: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+            }
+
+        }
+
+        public bool getCorR()
+        {
+            return CorR;
+        }
+
+        public void setCorR(bool b)
+        {
+            CorR = b;
         }
     }
 }
