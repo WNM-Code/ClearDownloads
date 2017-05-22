@@ -26,3 +26,7 @@ D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.Pro
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.csproj.GenerateResource.Cache
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.exe
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.pdb
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.exe.manifest
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.application
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.exe.manifest
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.application

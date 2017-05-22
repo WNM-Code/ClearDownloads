@@ -70,7 +70,8 @@ namespace WPFCLRDownloads
 
         private void TextNoFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Text = MakeFive(((TextBox)sender).Text);
+            string temp = MakeFive(((TextBox)sender).Text);
+            ((TextBox)sender).Text = fixTime(temp);
             r.setRepeatTime(((TextBox)sender).Text);
         }
 
@@ -172,6 +173,21 @@ namespace WPFCLRDownloads
                 r.setCorR(true);
                 ((Button)sender).Content = "Recycling";
             }
+        }
+
+        private string fixTime(string s)
+        {
+            int hour = Int32.Parse(s.Substring(0, 2));
+            int min = Int32.Parse(s.Substring(3, 2));
+            if(hour > 23)
+            {
+                hour = 23;
+            }
+            if(min> 59)
+            {
+                min = 59;
+            }
+            return hour + ":" + min;
         }
     }
 }
