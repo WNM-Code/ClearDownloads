@@ -165,12 +165,12 @@ namespace WPFCLRDownloads
             if (r.getCorR())
             {
                 r.setCorR(false);
-                ((Button)sender).Content = "Recycling";
+                ((Button)sender).Content = "Archiving";
             }
             else
             {
                 r.setCorR(true);
-                ((Button)sender).Content = "Archiving";
+                ((Button)sender).Content = "Recycling";
             }
         }
     }

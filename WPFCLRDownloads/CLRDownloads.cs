@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
 using System.Windows.Controls;
+using Microsoft.VisualBasic;
+using System.Runtime.InteropServices;
 
 namespace CLRDownloads
 {
@@ -13,6 +15,7 @@ namespace CLRDownloads
         string store = "";
         string storeLoc = "";
         bool moved;
+        //false means archiving
         bool CorR;
         private static Dictionary<string, int> dayEnabled = new Dictionary<string, int>
         {
@@ -131,12 +134,24 @@ namespace CLRDownloads
             if (!moved)
             {
                 Directory.Delete(storeLoc);
-                l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(false, now)); });
+                l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(false, false, now)); });
             }
             else
             {
-                Console.WriteLine("Removed @: " + now);
-                l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(true, now)); });
+                if (CorR)
+                {
+                    var shf = new SHFILEOPSTRUCT();
+                    shf.wFunc = FO_DELETE;
+                    shf.fFlags = FOF_ALLOWUNDO;
+                    shf.pFrom = storeLoc;
+                    SHFileOperation(ref shf);
+                    l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(true, true, now)); });
+                }
+                else
+                {
+                    l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(true, false, now)); });
+                    moved = false;
+                }
             }
         }
 
@@ -180,15 +195,24 @@ namespace CLRDownloads
             repeatTime = new DateTime(1997, 4, 1, hour, min, 0);
         }
 
-        private string getRemovedString(bool removed, DateTime now)
+        private string getRemovedString(bool removed, bool deleted, DateTime now)
         {
             if (removed)
             {
-                return "Removed: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+                if (deleted)
+                {
+                    return "Recycled: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+
+                }
+                else
+                {
+                    return "Archived: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+
+                }
             }
             else
             {
-                return "Nothing to be removed: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+                return "Nothing to be archived or recycled: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
             }
 
         }
@@ -202,5 +226,27 @@ namespace CLRDownloads
         {
             CorR = b;
         }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 1)]
+        public struct SHFILEOPSTRUCT
+        {
+            public IntPtr hwnd;
+            [MarshalAs(UnmanagedType.U4)]
+            public int wFunc;
+            public string pFrom;
+            public string pTo;
+            public short fFlags;
+            [MarshalAs(UnmanagedType.Bool)]
+            public bool fAnyOperationsAborted;
+            public IntPtr hNameMappings;
+            public string lpszProgressTitle;
+        }
+
+        [DllImport("shell32.dll", CharSet = CharSet.Auto)]
+        public static extern int SHFileOperation(ref SHFILEOPSTRUCT FileOp);
+
+        public const int FO_DELETE = 3;
+        public const int FOF_ALLOWUNDO = 0x40;
+        public const int FOF_NOCONFIRMATION = 0x10;
     }
 }

@@ -20,10 +20,10 @@
         <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="18" Margin="10,70,0,0" TextWrapping="Wrap" Text="00:00" TextChanged="TextChanged" GotFocus="TextFocus" LostFocus="TextNoFocus" VerticalAlignment="Top" Width="52" Cursor="None"/>
         <Label Content="Time (24 hr)" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.373" Foreground="White"/>
         <Label Content="Repeat" HorizontalAlignment="Left" Margin="29,-2,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24"/>
-        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="20,363,0,0" VerticalAlignment="Top" Click="RunClick" Width="103" Height="45" FontSize="20"/>
+        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="19,344,0,0" VerticalAlignment="Top" Click="RunClick" Width="103" Height="45" FontSize="20"/>
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="319" Margin="146,0,0,0" VerticalAlignment="Top" Width="371"/>
         <ListBox x:Name="LogsPane" HorizontalAlignment="Left" Height="383" Margin="146,35,0,0" VerticalAlignment="Top" Width="495" BorderBrush="{x:Null}"/>
         <Label Content="Logs" HorizontalAlignment="Left" Margin="151,-2,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF3F3F46" FontSize="20"/>
-        <Button x:Name="CorR" Content="Consolodate" HorizontalAlignment="Left" Margin="34,304,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="CorR" Content="Archiving" HorizontalAlignment="Left" Margin="34,304,0,0" Click="CorR_Click" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
