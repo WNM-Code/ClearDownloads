@@ -26,12 +26,12 @@
         <CheckBox x:Name="Sunday" Content="Sunday" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="59"/>
         <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="18" Margin="10,70,0,0" TextWrapping="Wrap" Text="00:00" TextChanged="TextChanged" GotFocus="TextFocus" LostFocus="TextNoFocus" VerticalAlignment="Top" Width="52" Cursor="None"/>
         <Label Content="Time (24 hr)" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.373" Foreground="White" Height="26" Width="74"/>
-        <Label Content="Repeat" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24" Height="42" Width="83"/>
+        <Label Content="Repeat Settings" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24" Height="42" Width="180"/>
         <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="19,356,0,0" VerticalAlignment="Top" Click="RunClick" Width="240" Height="45" FontSize="20" Padding="1,1,1,4" BorderBrush="#FF959595" BorderThickness="0,0,0,3"/>
         <ListBox x:Name="LogsPane" HorizontalAlignment="Left" Height="383" Margin="280,35,0,0" VerticalAlignment="Top" Width="526" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Background="#FFC4C4CB"/>
         <Label Content="Logs" HorizontalAlignment="Left" Margin="280,-2,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF3F3F46" FontSize="20" Height="37" Width="51"/>
-        <Button x:Name="CorR" Content="Archiving" HorizontalAlignment="Left" Margin="19,270,0,0" Click="CorR_Click" VerticalAlignment="Top" Width="240" Height="20" BorderBrush="#FF959595" Padding="1" UseLayoutRounding="False" BorderThickness="0,0,0,3" SnapsToDevicePixels="True"/>
-        <Label Content="Location:" HorizontalAlignment="Left" Margin="8,306,0,0" VerticalAlignment="Top" Width="59" Foreground="White"/>
-        <Button x:Name="LocClick" Content="Set Clear Location" HorizontalAlignment="Left" Margin="19,331,0,0" Click="LocationClick" VerticalAlignment="Top" Width="240" Background="#FFDDDDDD" BorderThickness="0,0,0,3" BorderBrush="#FF959595" Foreground="Black"/>
+        <Button x:Name="CorR" Content="Archiving" HorizontalAlignment="Left" Margin="19,261,0,0" Click="CorR_Click" VerticalAlignment="Top" Width="240" Height="29" BorderBrush="#FF959595" Padding="1" UseLayoutRounding="False" BorderThickness="0,0,0,3" SnapsToDevicePixels="True"/>
+        <Button x:Name="LocClick" Content="Set Clear Location" HorizontalAlignment="Left" Margin="19,327,0,0" Click="LocationClick" VerticalAlignment="Top" Width="240" Background="#FFDDDDDD" BorderThickness="0,0,0,3" BorderBrush="#FF959595" Foreground="Black" Padding="1" ScrollViewer.CanContentScroll="True"/>
+        <Button x:Name="RemArchive" Content="Avoid Archived Folders" HorizontalAlignment="Left" Margin="19,298,0,0" Click="RemArchive_Click" VerticalAlignment="Top" Width="240" Background="#FFDDDDDD" BorderThickness="0,0,0,3" BorderBrush="#FF959595" Foreground="Black" Padding="1,2,1,1"/>
     </Grid>
 </Window>

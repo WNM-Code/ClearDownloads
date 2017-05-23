@@ -206,11 +206,21 @@ namespace WPFCLRDownloads
             {
                 r.setCorR(false);
                 ((Button)sender).Content = "Archiving";
+                if (r.getRemArchive())
+                {
+                    RemArchive.Content = "Archive Archived Folders";
+
+                }
             }
             else
             {
                 r.setCorR(true);
                 ((Button)sender).Content = "Recycling";
+                if (r.getRemArchive())
+                {
+                    RemArchive.Content = "Recycle Archived Folders";
+
+                }
             }
         }
 
@@ -232,6 +242,28 @@ namespace WPFCLRDownloads
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void RemArchive_Click(object sender, RoutedEventArgs e)
+        {
+            if (r.getRemArchive())
+            {
+                r.setRemArchive(false);
+                ((Button)sender).Content = "Avoid Archived Folders";
+            }
+            else
+            {
+                r.setRemArchive(true);
+                if (r.getCorR())
+                {
+                    ((Button)sender).Content = "Recycle Archived Folders";
+                }
+                else
+                {
+                    ((Button)sender).Content = "Archive Archived Folders";
+                }
+                
+            }
         }
     }
 }

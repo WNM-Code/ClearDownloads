@@ -15,6 +15,7 @@ namespace CLRDownloads
         string store = "";
         string storeLoc = "";
         bool moved;
+        bool remArchive;
         //false means archiving
         bool CorR;
         private static Dictionary<string, int> dayEnabled = new Dictionary<string, int>
@@ -51,11 +52,12 @@ namespace CLRDownloads
         public Remover()
         {
             location = "null";
-            store = "$ Removed " + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
+            store = "$ Archived " + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
             storeLoc = location + "\\" + store;
             moved = false;
             running = false;
             CorR = false;
+            remArchive = false;
             repeatTime = new DateTime(1997,4,1,0,0,0);
         }
 
@@ -149,12 +151,15 @@ namespace CLRDownloads
             }
             foreach (string folder in folders)
             {
-                if (!folder.Contains(location + "\\$ Removed "))
+                if (!folder.Contains(location + "\\$ Archived ") || remArchive)
                 {
-                    filename = folder.Remove(0, location.Length);
-                    fileLoc = storeLoc + filename;
-                    Directory.Move(folder, fileLoc);
-                    moved = true;
+                    if (folder != storeLoc)
+                    {
+                        filename = folder.Remove(0, location.Length);
+                        fileLoc = storeLoc + filename;
+                        Directory.Move(folder, fileLoc);
+                        moved = true;
+                    }
                 }
             }
             if (!moved)
@@ -183,7 +188,7 @@ namespace CLRDownloads
 
         private void setStore()
         {
-            store = "$ Removed " + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
+            store = "$ Archived " + string.Format("{0:MM-dd-yyyy HH.mm}", DateTime.Now);
         }
 
         private void setLoc()
@@ -256,6 +261,16 @@ namespace CLRDownloads
         public void setLocation(string s)
         {
             location = @"" + s;
+        }
+
+        public bool getRemArchive()
+        {
+            return remArchive;
+        }
+
+        public void setRemArchive(bool b)
+        {
+            remArchive = b;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 1)]

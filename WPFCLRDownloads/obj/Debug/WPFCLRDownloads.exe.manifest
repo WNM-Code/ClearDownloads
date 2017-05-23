@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPFCLRDownloads.exe" size="69592">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WPFCLRDownloads.exe" size="70616">
       <assemblyIdentity name="WPFCLRDownloads" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2waFfT9wmU8eNrW9/oWYHTl9mDCY68P4z000CzYpHDo=</dsig:DigestValue>
+        <dsig:DigestValue>ckx+GM+uc9huu2XHnJY0jW9YK9X0p0JQ36WZwMe7C18=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
