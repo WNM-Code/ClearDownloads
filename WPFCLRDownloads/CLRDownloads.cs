@@ -50,7 +50,7 @@ namespace CLRDownloads
 
         public Remover()
         {
-            location = @"d:\Downloads";
+            location = "null";
             store = "$ Removed " + string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
             storeLoc = location + "\\" + store;
             moved = false;
@@ -105,13 +105,39 @@ namespace CLRDownloads
         {
             setStore();
             setLoc();
-            Directory.CreateDirectory(storeLoc);
-            remove(location, now, l);
+            Console.WriteLine(storeLoc);
+            if (location != "null")
+            {
+                if (Directory.GetParent(storeLoc).Exists)
+                {
+                    Directory.CreateDirectory(storeLoc);
+                    remove(location, now, l);
+                    return;
+                }
+                else
+                {
+                    l.Dispatcher.Invoke(() => { l.Items.Add(Directory.GetParent(storeLoc) + " does not exist anymore.\nSelect a new location."); });
+                }
+
+            }
+            else
+            {
+                l.Dispatcher.Invoke(() => { l.Items.Add("You must correctly set the Clear Location"); });
+            }
         }
 
         public void remove(string path, DateTime now, ListBox l)
         {
-            string[] folders = Directory.GetDirectories(path);
+            string[] folders;
+            if (location != "null") {
+                folders = Directory.GetDirectories(path);
+            }
+            else
+            {
+                l.Dispatcher.Invoke(() => { l.Items.Add("You must correctly set the Clear Location"); });
+                return;
+            }
+
             string filename;
             string fileLoc;
             foreach (string file in Directory.GetFiles(path))
@@ -225,6 +251,11 @@ namespace CLRDownloads
         public void setCorR(bool b)
         {
             CorR = b;
+        }
+
+        public void setLocation(string s)
+        {
+            location = @"" + s;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 1)]

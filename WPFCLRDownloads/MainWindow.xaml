@@ -7,23 +7,31 @@
         xmlns:Properties="clr-namespace:WPFCLRDownloads.Properties" x:Class="WPFCLRDownloads.MainWindow"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Clear Downloads" Height="447.458" Width="647.034">
+        Title="Clear Downloads" Height="447.458" Width="812.034" WindowStyle="ThreeDBorderWindow" Icon="eraser_PNF_icon.ico" BorderBrush="#FF3F3F46">
     <Grid MouseLeftButtonDown="grid1_MouseDown" MouseDown="grid1_MouseDown" Name="grid1" Focusable="True">
-        <Rectangle Fill="#FF3F3F46" HorizontalAlignment="Left" Height="418" VerticalAlignment="Bottom" MinWidth="99" Width="146"/>
-        <CheckBox x:Name="Monday" Content="Monday" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White"/>
-        <CheckBox x:Name="Tuesday" Content="Tuesday" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White"/>
-        <CheckBox x:Name="Wednesday" Content="Wednesday" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White"/>
-        <CheckBox x:Name="Thursday" Content="Thursday" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White"/>
-        <CheckBox x:Name="Friday" Content="Friday" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White"/>
-        <CheckBox x:Name="Saturday" Content="Saturday" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White"/>
-        <CheckBox x:Name="Sunday" Content="Sunday" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="484*"/>
+            <ColumnDefinition Width="157*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FFB4B4BD" HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="806" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="#FF3F3F46" HorizontalAlignment="Left" Height="418" VerticalAlignment="Bottom" MinWidth="99" Width="280" Stroke="#FFC4C4CB"/>
+        <Rectangle Fill="#FF3F3F46" HorizontalAlignment="Left" Height="256" VerticalAlignment="Top" Width="280" Stroke="#FFC4C4CB"/>
+        <CheckBox x:Name="Monday" Content="Monday" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="64" Padding="4,-1,0,0" BorderThickness="1"/>
+        <CheckBox x:Name="Tuesday" Content="Tuesday" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="63" Padding="4,-1,0,0"/>
+        <CheckBox x:Name="Wednesday" Content="Wednesday" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="81"/>
+        <CheckBox x:Name="Thursday" Content="Thursday" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="68"/>
+        <CheckBox x:Name="Friday" Content="Friday" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="52"/>
+        <CheckBox x:Name="Saturday" Content="Saturday" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="66"/>
+        <CheckBox x:Name="Sunday" Content="Sunday" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="59"/>
         <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="18" Margin="10,70,0,0" TextWrapping="Wrap" Text="00:00" TextChanged="TextChanged" GotFocus="TextFocus" LostFocus="TextNoFocus" VerticalAlignment="Top" Width="52" Cursor="None"/>
-        <Label Content="Time (24 hr)" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.373" Foreground="White"/>
-        <Label Content="Repeat" HorizontalAlignment="Left" Margin="29,-2,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24"/>
-        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="19,344,0,0" VerticalAlignment="Top" Click="RunClick" Width="103" Height="45" FontSize="20"/>
-        <Rectangle Fill="White" HorizontalAlignment="Left" Height="319" Margin="146,0,0,0" VerticalAlignment="Top" Width="371"/>
-        <ListBox x:Name="LogsPane" HorizontalAlignment="Left" Height="383" Margin="146,35,0,0" VerticalAlignment="Top" Width="495" BorderBrush="{x:Null}"/>
-        <Label Content="Logs" HorizontalAlignment="Left" Margin="151,-2,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF3F3F46" FontSize="20"/>
-        <Button x:Name="CorR" Content="Archiving" HorizontalAlignment="Left" Margin="34,304,0,0" Click="CorR_Click" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Time (24 hr)" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.373" Foreground="White" Height="26" Width="74"/>
+        <Label Content="Repeat" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24" Height="42" Width="83"/>
+        <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="19,356,0,0" VerticalAlignment="Top" Click="RunClick" Width="240" Height="45" FontSize="20" Padding="1,1,1,4" BorderBrush="#FF959595" BorderThickness="0,0,0,3"/>
+        <ListBox x:Name="LogsPane" HorizontalAlignment="Left" Height="383" Margin="280,35,0,0" VerticalAlignment="Top" Width="526" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Background="#FFC4C4CB"/>
+        <Label Content="Logs" HorizontalAlignment="Left" Margin="280,-2,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF3F3F46" FontSize="20" Height="37" Width="51"/>
+        <Button x:Name="CorR" Content="Archiving" HorizontalAlignment="Left" Margin="19,270,0,0" Click="CorR_Click" VerticalAlignment="Top" Width="240" Height="20" BorderBrush="#FF959595" Padding="1" UseLayoutRounding="False" BorderThickness="0,0,0,3" SnapsToDevicePixels="True"/>
+        <Label Content="Location:" HorizontalAlignment="Left" Margin="8,306,0,0" VerticalAlignment="Top" Width="59" Foreground="White"/>
+        <Button x:Name="LocClick" Content="Set Clear Location" HorizontalAlignment="Left" Margin="19,331,0,0" Click="LocationClick" VerticalAlignment="Top" Width="240" Background="#FFDDDDDD" BorderThickness="0,0,0,3" BorderBrush="#FF959595" Foreground="Black"/>
     </Grid>
 </Window>

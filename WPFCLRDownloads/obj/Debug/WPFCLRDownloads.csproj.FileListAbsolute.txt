@@ -30,3 +30,7 @@ D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.exe
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\WPFCLRDownloads.application
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.exe.manifest
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\obj\Debug\WPFCLRDownloads.application
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAPICodePack.dll
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAPICodePack.xml
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml

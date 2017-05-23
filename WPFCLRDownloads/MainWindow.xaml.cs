@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using CLRDownloads;
 using System.Text.RegularExpressions;
+using Microsoft.WindowsAPICodePack.Dialogs;
+
 
 namespace WPFCLRDownloads
 {
@@ -62,6 +64,23 @@ namespace WPFCLRDownloads
             }
             
         }
+        private void LocationClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            CommonFileDialogResult result = dialog.ShowDialog();
+            try
+            {
+                ((Button)sender).Content = dialog.FileName;
+                r.setLocation(dialog.FileName);
+            }
+            catch
+            {
+                ((Button)sender).Content = "Set Clear Location";
+                r.setLocation("null");
+            }
+        }
+
 
         private void TextFocus(object sender, RoutedEventArgs e)
         {
@@ -71,8 +90,9 @@ namespace WPFCLRDownloads
         private void TextNoFocus(object sender, RoutedEventArgs e)
         {
             string temp = MakeFive(((TextBox)sender).Text);
-            ((TextBox)sender).Text = fixTime(temp);
             r.setRepeatTime(((TextBox)sender).Text);
+            ((TextBox)sender).Text = fixTime(temp);
+
         }
 
         private void grid1_MouseDown(object sender, MouseButtonEventArgs e)
@@ -125,7 +145,26 @@ namespace WPFCLRDownloads
             }
         }
 
-        private string CleanColon(string s)
+        //private void LocTextChanged(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        RunButton.Content = "Run";
+        //        r.setRunning(false);
+        //        r.setLocation(((TextBox)sender).Text);
+        //    }
+        //    catch (NullReferenceException)
+        //    {
+
+        //    }
+
+            
+        //    //int len = ((TextBox)sender).Text.Length;
+        //    //((TextBox)sender).SelectionStart = len;
+        //    //((TextBox)sender).SelectionLength = 0;
+        //}
+
+            private string CleanColon(string s)
         {
             while (s.Contains(":"))
             {
@@ -188,6 +227,11 @@ namespace WPFCLRDownloads
                 min = 59;
             }
             return hour + ":" + min;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
