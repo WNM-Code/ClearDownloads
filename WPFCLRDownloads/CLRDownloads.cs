@@ -18,6 +18,7 @@ namespace CLRDownloads
         bool remArchive;
         //false means archiving
         bool CorR;
+        bool exists;
         private static Dictionary<string, int> dayEnabled = new Dictionary<string, int>
         {
             {"Monday"   , 0 },
@@ -58,6 +59,7 @@ namespace CLRDownloads
             running = false;
             CorR = false;
             remArchive = false;
+            exists = false;
             repeatTime = new DateTime(1997,4,1,0,0,0);
         }
 
@@ -112,7 +114,14 @@ namespace CLRDownloads
             {
                 if (Directory.GetParent(storeLoc).Exists)
                 {
-                    Directory.CreateDirectory(storeLoc);
+                    if (Directory.Exists(storeLoc))
+                    {
+                        exists = true;
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(storeLoc);
+                    }
                     remove(location, now, l);
                     return;
                 }
@@ -144,6 +153,9 @@ namespace CLRDownloads
             string fileLoc;
             foreach (string file in Directory.GetFiles(path))
             {
+                Console.WriteLine("0");
+
+                Console.WriteLine(file);
                 filename = file.Remove(0, path.Length);
                 fileLoc = storeLoc + "\\" + filename;
                 Directory.Move(file, fileLoc);
@@ -151,38 +163,118 @@ namespace CLRDownloads
             }
             foreach (string folder in folders)
             {
-                if (!folder.Contains(location + "\\$ Archived ") || remArchive)
+                Console.WriteLine(folder);
+                //if (!folder.Contains(location + "\\$ Archived ") || remArchive)
+                //{
+                //    Console.WriteLine("1");
+                //    if (folder != storeLoc)
+                //    {
+                //        Console.WriteLine("2");
+
+                //        filename = folder.Remove(0, location.Length);
+                //        fileLoc = storeLoc + filename;
+                //        Directory.Move(folder, fileLoc);
+                //        moved = true;
+                //    }
+                //    else if(remArchive)
+                //    {
+                //        Console.WriteLine("3");
+
+                //        moved = true;
+                //    }
+                //}
+                if (folder.Contains(location + "\\$ Archived "))
                 {
-                    if (folder != storeLoc)
+                    if (remArchive)
                     {
-                        filename = folder.Remove(0, location.Length);
-                        fileLoc = storeLoc + filename;
-                        Directory.Move(folder, fileLoc);
-                        moved = true;
+                        if (!folder.Equals(storeLoc))
+                        {
+                            filename = folder.Remove(0, location.Length);
+                            fileLoc = storeLoc + filename;
+                            string a = "";
+                            int b = 0;
+                            bool good = false;
+                            while (!good)
+                            {
+                                try
+                                {
+                                    Directory.Move(folder, fileLoc + a);
+                                    good = true;
+                                }
+                                catch
+                                {
+                                    b++;
+                                    a = " (" + b + ")";
+                                }
+                            }
+                            moved = true;
+                        }
+                        else
+                        {
+                            if (exists)
+                            {
+                                moved = true;
+                            }
+                        }
                     }
+                }
+                else
+                {
+                    filename = folder.Remove(0, location.Length);
+                    fileLoc = storeLoc + filename;
+                    string a = "";
+                    int b = 0;
+                    bool good = false;
+                    while (!good)
+                    {
+                        try
+                        {
+                            Directory.Move(folder, fileLoc + a);
+                            good = true;
+                        }
+                        catch
+                        {
+                            b++;
+                            a = "(" + b + ")";
+                        }
+                    }
+                    moved = true;
                 }
             }
             if (!moved)
             {
-                Directory.Delete(storeLoc);
+                try
+                {
+                    Directory.Delete(storeLoc);
+                }
+                catch
+                {
+
+                }
                 l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(false, false, now)); });
             }
             else
             {
                 if (CorR)
                 {
+                    Console.WriteLine("WWW");
                     var shf = new SHFILEOPSTRUCT();
                     shf.wFunc = FO_DELETE;
                     shf.fFlags = FOF_ALLOWUNDO;
                     shf.pFrom = storeLoc;
                     SHFileOperation(ref shf);
+                    while (Directory.Exists(storeLoc))
+                    {
+                        Console.WriteLine("lol");
+                        SHFileOperation(ref shf);
+                    }
                     l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(true, true, now)); });
                 }
                 else
                 {
                     l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(true, false, now)); });
-                    moved = false;
                 }
+                moved = false;
             }
         }
 
@@ -228,22 +320,34 @@ namespace CLRDownloads
 
         private string getRemovedString(bool removed, bool deleted, DateTime now)
         {
+            string z = "";
             if (removed)
             {
                 if (deleted)
                 {
-                    return "Recycled: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
-
+                    if (now.Minute <= 9)
+                    {
+                        z = "0";
+                    }
+                    return "Recycled: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + z + now.Minute;
                 }
                 else
                 {
-                    return "Archived: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+                    if (now.Minute <= 9)
+                    {
+                        z = "0";
+                    }
+                    return "Archived: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + z + now.Minute;
 
                 }
             }
             else
             {
-                return "Nothing to be archived or recycled: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + now.Minute;
+                if (now.Minute <= 9)
+                {
+                    z = "0";
+                }
+                return "Nothing to be archived or recycled: " + now.DayOfWeek + ", " + months[now.Month] + " " + now.Day + " @ " + now.Hour + ":" + z + now.Minute;
             }
 
         }

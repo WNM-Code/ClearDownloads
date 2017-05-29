@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("eraser_pnf_icon.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("eraser_ob3_icon.ico")]
 
 

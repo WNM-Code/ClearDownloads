@@ -34,3 +34,6 @@ D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAP
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAPICodePack.xml
 D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Hardcodet.Wpf.TaskbarNotification.dll
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Hardcodet.Wpf.TaskbarNotification.pdb
+D:\Documents\GitHub\ClearDownloads\WPFCLRDownloads\bin\Debug\Hardcodet.Wpf.TaskbarNotification.xml

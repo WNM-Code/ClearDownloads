@@ -5,7 +5,9 @@ using System.Windows.Input;
 using CLRDownloads;
 using System.Text.RegularExpressions;
 using Microsoft.WindowsAPICodePack.Dialogs;
-
+using System.ComponentModel;
+using Hardcodet.Wpf.TaskbarNotification;
+using WPFCLRDownloads.Properties;
 
 namespace WPFCLRDownloads
 {
@@ -19,6 +21,9 @@ namespace WPFCLRDownloads
         public MainWindow()
         {
             InitializeComponent();
+            TaskbarIcon icon = new TaskbarIcon();
+            icon.Icon = Properties.Resources.eraser_PNF_icon;
+            icon.ToolTipText = "Clear Downloads";
             r = new Remover();
             r.run(LogsPane, RunButton);
 
@@ -145,25 +150,6 @@ namespace WPFCLRDownloads
             }
         }
 
-        //private void LocTextChanged(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        RunButton.Content = "Run";
-        //        r.setRunning(false);
-        //        r.setLocation(((TextBox)sender).Text);
-        //    }
-        //    catch (NullReferenceException)
-        //    {
-
-        //    }
-
-            
-        //    //int len = ((TextBox)sender).Text.Length;
-        //    //((TextBox)sender).SelectionStart = len;
-        //    //((TextBox)sender).SelectionLength = 0;
-        //}
-
             private string CleanColon(string s)
         {
             while (s.Contains(":"))
@@ -264,6 +250,18 @@ namespace WPFCLRDownloads
                 }
                 
             }
+        }
+
+        // minimize to system tray when applicaiton is closed
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            // setting cancel to true will cancel the close request
+            // so the application is not closed
+            e.Cancel = true;
+
+            this.Hide();
+
+            base.OnClosing(e);
         }
     }
 }
