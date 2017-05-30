@@ -109,7 +109,6 @@ namespace CLRDownloads
         {
             setStore();
             setLoc();
-            Console.WriteLine(storeLoc);
             if (location != "null")
             {
                 if (Directory.GetParent(storeLoc).Exists)
@@ -153,9 +152,6 @@ namespace CLRDownloads
             string fileLoc;
             foreach (string file in Directory.GetFiles(path))
             {
-                Console.WriteLine("0");
-
-                Console.WriteLine(file);
                 filename = file.Remove(0, path.Length);
                 fileLoc = storeLoc + "\\" + filename;
                 Directory.Move(file, fileLoc);
@@ -163,26 +159,6 @@ namespace CLRDownloads
             }
             foreach (string folder in folders)
             {
-                Console.WriteLine(folder);
-                //if (!folder.Contains(location + "\\$ Archived ") || remArchive)
-                //{
-                //    Console.WriteLine("1");
-                //    if (folder != storeLoc)
-                //    {
-                //        Console.WriteLine("2");
-
-                //        filename = folder.Remove(0, location.Length);
-                //        fileLoc = storeLoc + filename;
-                //        Directory.Move(folder, fileLoc);
-                //        moved = true;
-                //    }
-                //    else if(remArchive)
-                //    {
-                //        Console.WriteLine("3");
-
-                //        moved = true;
-                //    }
-                //}
                 if (folder.Contains(location + "\\$ Archived "))
                 {
                     if (remArchive)
@@ -257,7 +233,6 @@ namespace CLRDownloads
             {
                 if (CorR)
                 {
-                    Console.WriteLine("WWW");
                     var shf = new SHFILEOPSTRUCT();
                     shf.wFunc = FO_DELETE;
                     shf.fFlags = FOF_ALLOWUNDO;
@@ -265,7 +240,6 @@ namespace CLRDownloads
                     SHFileOperation(ref shf);
                     while (Directory.Exists(storeLoc))
                     {
-                        Console.WriteLine("lol");
                         SHFileOperation(ref shf);
                     }
                     l.Dispatcher.Invoke(() => { l.Items.Add(getRemovedString(true, true, now)); });
@@ -291,7 +265,6 @@ namespace CLRDownloads
         public static void setDayEnabled(string day, int val)
         {
             dayEnabled[day] = val;
-            Console.WriteLine(dayEnabled[day]);
         }
 
         public Dictionary<string, int> getDayEnabled()
@@ -313,8 +286,6 @@ namespace CLRDownloads
         {
             int hour = Int32.Parse(s.Substring(0, 2));
             int min = Int32.Parse(s.Substring(3, 2));
-            Console.WriteLine("Hour: " + hour);
-            Console.WriteLine("Min: " + min);
             repeatTime = new DateTime(1997, 4, 1, hour, min, 0);
         }
 

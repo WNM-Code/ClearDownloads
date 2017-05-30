@@ -18,15 +18,18 @@ namespace WPFCLRDownloads
     {
 
         Remover r;
+        TaskbarIcon icon;
+        bool minimized;
         public MainWindow()
         {
             InitializeComponent();
-            TaskbarIcon icon = new TaskbarIcon();
+            icon = Icon;
             icon.Icon = Properties.Resources.eraser_PNF_icon;
             icon.ToolTipText = "Clear Downloads";
+            icon.Visibility = Visibility.Hidden;
+            minimized = false;
             r = new Remover();
             r.run(LogsPane, RunButton);
-
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -89,7 +92,7 @@ namespace WPFCLRDownloads
 
         private void TextFocus(object sender, RoutedEventArgs e)
         {
-            //((TextBox)sender).Text = "";
+
         }
 
         private void TextNoFocus(object sender, RoutedEventArgs e)
@@ -139,11 +142,7 @@ namespace WPFCLRDownloads
                         len = 5;
                     }
                 }
-
-                Console.WriteLine(text);
-                
                 ((TextBox)sender).Text = text;
-
                 len = text.Length;
                 ((TextBox)sender).SelectionStart = len;
                 ((TextBox)sender).SelectionLength = 0;
@@ -252,16 +251,26 @@ namespace WPFCLRDownloads
             }
         }
 
-        // minimize to system tray when applicaiton is closed
-        protected override void OnClosing(CancelEventArgs e)
+        protected override void OnStateChanged(EventArgs e)
         {
-            // setting cancel to true will cancel the close request
-            // so the application is not closed
-            e.Cancel = true;
+            if(this.WindowState == WindowState.Minimized)
+            {
+                this.Hide();
+                icon.Visibility = Visibility.Visible;
+            }
+            base.OnStateChanged(e);
+        }
 
-            this.Hide();
+        private void Show_Click(object sender, RoutedEventArgs e)
+        {
+            this.Show();
+            this.WindowState = WindowState.Normal;
+            icon.Visibility = Visibility.Hidden;
+        }
 
-            base.OnClosing(e);
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
