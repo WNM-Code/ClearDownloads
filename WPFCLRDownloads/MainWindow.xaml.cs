@@ -19,7 +19,6 @@ namespace WPFCLRDownloads
 
         Remover r;
         TaskbarIcon icon;
-        bool minimized;
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +26,10 @@ namespace WPFCLRDownloads
             icon.Icon = Properties.Resources.eraser_PNF_icon;
             icon.ToolTipText = "Clear Downloads";
             icon.Visibility = Visibility.Hidden;
-            minimized = false;
+            LogsPane.Items.Add("Welcome to Clear Downloads!\n\tChoose when to run the clearing tool on the left." +
+                "\n\tSelect whether to archive or recycle your files.\n\tSet the location to clear " +
+                "by clicking \"Set Clear Location\".\n\tThen finally, Click \"Run\" to begin clearing your downloads folder!" +
+                "\n\n\tMinimizing this window will hide it in your tray.");
             r = new Remover();
             r.run(LogsPane, RunButton);
         }
@@ -98,9 +100,8 @@ namespace WPFCLRDownloads
         private void TextNoFocus(object sender, RoutedEventArgs e)
         {
             string temp = MakeFive(((TextBox)sender).Text);
-            r.setRepeatTime(((TextBox)sender).Text);
             ((TextBox)sender).Text = fixTime(temp);
-
+            r.setRepeatTime(((TextBox)sender).Text);
         }
 
         private void grid1_MouseDown(object sender, MouseButtonEventArgs e)
@@ -110,6 +111,7 @@ namespace WPFCLRDownloads
 
         private void TextChanged(object sender, RoutedEventArgs e)
         {
+            int sel = ((TextBox)sender).SelectionStart;
             try
             {
                 RunButton.Content = "Run";
@@ -122,6 +124,7 @@ namespace WPFCLRDownloads
            
             string text = ((TextBox)sender).Text;
             int len = text.Length;
+            bool inserted = false;
             if (len > 0)
             {
                 text = CleanColon(text);
@@ -134,6 +137,7 @@ namespace WPFCLRDownloads
                     {
                         text = text.Insert(2, ":");
                         len = text.Length;
+                        inserted = true;
                     }
                     
                     if (len > 5)
@@ -144,12 +148,21 @@ namespace WPFCLRDownloads
                 }
                 ((TextBox)sender).Text = text;
                 len = text.Length;
-                ((TextBox)sender).SelectionStart = len;
-                ((TextBox)sender).SelectionLength = 0;
+                if (inserted)
+                {
+                    ((TextBox)sender).SelectionStart  = sel +1;
+                    ((TextBox)sender).SelectionLength = 0;
+                }
+                else
+                {
+                    ((TextBox)sender).SelectionStart = len;
+                    ((TextBox)sender).SelectionLength = 0;
+                }
+                
             }
         }
 
-            private string CleanColon(string s)
+        private string CleanColon(string s)
         {
             while (s.Contains(":"))
             {
@@ -211,17 +224,28 @@ namespace WPFCLRDownloads
 
         private string fixTime(string s)
         {
+            s = MakeFive(s);
             int hour = Int32.Parse(s.Substring(0, 2));
             int min = Int32.Parse(s.Substring(3, 2));
-            if(hour > 23)
+            if (hour > 23)
             {
                 hour = 23;
             }
-            if(min> 59)
+            if(min > 59)
             {
                 min = 59;
             }
-            return hour + ":" + min;
+            string l1 = "";
+            string l2 = "";
+            if(hour < 10)
+            {
+                l1 = "0";
+            }
+            if(min < 10)
+            {
+                l2 = "0";
+            }
+            return l1 + hour + ":" + l2 + min;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
