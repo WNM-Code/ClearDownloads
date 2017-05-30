@@ -68,6 +68,7 @@ namespace CLRDownloads
             
             DateTime now = DateTime.Now;
             DateTime before = DateTime.Now;
+            bool ran = false;
             await Task.Run(() =>
             {
                 while (true)
@@ -79,11 +80,19 @@ namespace CLRDownloads
                             now.Hour == repeatTime.Hour &&
                             now.Minute == repeatTime.Minute)
                         {
-                            callRemove(now, l);
-                            before = now;
+                            if (!ran)
+                            {
+                                callRemove(now, l);
+                                before = now;
+                                ran = true;
+                            }
+                        }
+                        else
+                        {
+                            ran = false;
                         }
                     }
-                    Thread.Sleep(60000);
+                    Thread.Sleep(30000);
                 }
             });
             

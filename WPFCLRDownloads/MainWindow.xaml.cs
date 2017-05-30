@@ -174,7 +174,7 @@ namespace WPFCLRDownloads
 
         private string CleanLetter(string s)
         {
-            return Regex.Replace(s, "[A-Za-z ~!@#$%^&*()_+=-`{}<>,.:\";\']", "");
+            return Regex.Replace(s, "[A-Za-z ~!@#$%^&*()_+=-`{}<>,.:\";\'/]", "");
         }
 
         private string MakeFive(string s)

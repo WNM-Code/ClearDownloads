@@ -25,7 +25,7 @@
         <CheckBox x:Name="Friday" Content="Friday" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="52"/>
         <CheckBox x:Name="Saturday" Content="Saturday" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="66"/>
         <CheckBox x:Name="Sunday" Content="Sunday" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="59"/>
-        <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="18" Margin="10,70,0,0" TextWrapping="Wrap" Text="00:00" TextChanged="TextChanged" GotFocus="TextFocus" LostFocus="TextNoFocus" VerticalAlignment="Top" Width="52" Cursor="None"/>
+        <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="18" Margin="10,70,0,0" TextWrapping="Wrap" Text="00:00" TextChanged="TextChanged" GotFocus="TextFocus" LostFocus="TextNoFocus" VerticalAlignment="Top" Width="52" />
         <Label Content="Time (24 hr)" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.373" Foreground="White" Height="26" Width="74"/>
         <Label Content="Repeat Settings" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24" Height="42" Width="180"/>
         <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="19,356,0,0" VerticalAlignment="Top" Click="RunClick" Width="240" Height="45" FontSize="20" Padding="1,1,1,4" BorderBrush="#FF959595" BorderThickness="0,0,0,3"/>
