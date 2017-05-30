@@ -8,14 +8,14 @@
     xmlns:tb="http://www.hardcodet.net/taskbar" x:Class="WPFCLRDownloads.MainWindow"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="Clear Downloads" Height="447.458" Width="812.034" WindowStyle="ThreeDBorderWindow" Icon="eraser_PNF_icon.ico" BorderBrush="#FF3F3F46">
+        Title="Clear Downloads" Height="447.458" Width="820.034" WindowStyle="ThreeDBorderWindow" Icon="eraser_PNF_icon.ico" BorderBrush="#FF3F3F46">
     <Grid MouseLeftButtonDown="grid1_MouseDown" MouseDown="grid1_MouseDown" Name="grid1" Focusable="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="484*"/>
             <ColumnDefinition Width="157*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FFB4B4BD" HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="806" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="#FFB4B4BD" HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="814" Grid.ColumnSpan="2"/>
         <Rectangle Fill="#FF3F3F46" HorizontalAlignment="Left" Height="418" VerticalAlignment="Bottom" MinWidth="99" Width="280" Stroke="#FFC4C4CB"/>
         <Rectangle Fill="#FF3F3F46" HorizontalAlignment="Left" Height="256" VerticalAlignment="Top" Width="280" Stroke="#FFC4C4CB"/>
         <CheckBox x:Name="Monday" Content="Monday" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="White" Height="15" Width="64" Padding="4,-1,0,0" BorderThickness="1"/>
@@ -29,7 +29,7 @@
         <Label Content="Time (24 hr)" HorizontalAlignment="Left" Margin="5,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.113,0.373" Foreground="White" Height="26" Width="74"/>
         <Label Content="Repeat Settings" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" Foreground="White" FontSize="24" Height="42" Width="180"/>
         <Button x:Name="RunButton" Content="Run" HorizontalAlignment="Left" Margin="19,356,0,0" VerticalAlignment="Top" Click="RunClick" Width="240" Height="45" FontSize="20" Padding="1,1,1,4" BorderBrush="#FF959595" BorderThickness="0,0,0,3"/>
-        <ListBox x:Name="LogsPane" HorizontalAlignment="Left" Height="383" Margin="280,35,0,0" VerticalAlignment="Top" Width="526" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Background="#FFC4C4CB"/>
+        <ListBox x:Name="LogsPane" HorizontalAlignment="Left" Height="383" Margin="280,35,0,0" VerticalAlignment="Top" Width="519" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Background="#FFC4C4CB"/>
         <Label Content="Logs" HorizontalAlignment="Left" Margin="280,-2,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF3F3F46" FontSize="20" Height="37" Width="51"/>
         <Button x:Name="CorR" Content="Archiving" HorizontalAlignment="Left" Margin="19,261,0,0" Click="CorR_Click" VerticalAlignment="Top" Width="240" Height="29" BorderBrush="#FF959595" Padding="1" UseLayoutRounding="False" BorderThickness="0,0,0,3" SnapsToDevicePixels="True"/>
         <Button x:Name="LocClick" Content="Set Clear Location" HorizontalAlignment="Left" Margin="19,327,0,0" Click="LocationClick" VerticalAlignment="Top" Width="240" Background="#FFDDDDDD" BorderThickness="0,0,0,3" BorderBrush="#FF959595" Foreground="Black" Padding="1" ScrollViewer.CanContentScroll="True"/>

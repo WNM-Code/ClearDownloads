@@ -26,10 +26,11 @@ namespace WPFCLRDownloads
             icon.Icon = Properties.Resources.eraser_PNF_icon;
             icon.ToolTipText = "Clear Downloads";
             icon.Visibility = Visibility.Hidden;
-            LogsPane.Items.Add("Welcome to Clear Downloads!\n\tChoose when to run the clearing tool on the left." +
+            LogsPane.Items.Add("Welcome to Clear Downloads!\n\n\tChoose when to run the clearing tool on the left." +
                 "\n\tSelect whether to archive or recycle your files.\n\tSet the location to clear " +
-                "by clicking \"Set Clear Location\".\n\tThen finally, Click \"Run\" to begin clearing your downloads folder!" +
-                "\n\n\tMinimizing this window will hide it in your tray.");
+                "by clicking \"Set Clear Location\".\n\tThen finally, click \"Run\" to begin clearing your downloads folder!" +
+                "\n\n\tMinimizing this will hide it in the tray and allow the cleaner to run in the background." +
+                "\n\tClosing this will prevent the cleaner to run in the background.");
             r = new Remover();
             r.run(LogsPane, RunButton);
         }
